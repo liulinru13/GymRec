@@ -5,21 +5,45 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import com.mmrx.gymrec.bean.model.MuscleBean
+import com.mmrx.gymrec.bean.table.MuscleTable
+import com.mmrx.gymrec.db.GymDbHelper
+import com.mmrx.gymrec.ui.framework.IPageManager
+import com.mmrx.gymrec.ui.framework.PageQueue
 
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.db.classParser
+import org.jetbrains.anko.db.select
 
 class MainActivity : AppCompatActivity() {
+
+    private var pageManager: IPageManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
+        val rootView: ViewGroup = findViewById(R.id.root_view) as ViewGroup
+        pageManager = PageQueue(this, rootView)
+        pageManager?.gotoPage(R.layout.page_first_page,null)
 
+        val dbHelper = GymDbHelper.getInstance(this)
+        fab.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(p0: View?) {
+                dbHelper.use{
+                    val rowParser = classParser<MuscleBean>()
+                    val result = select(MuscleTable.NAME)
+                    val list = result.parseList(rowParser)
+//                    val arr = emptyArray<Any?>()
+//                    rowParser.parseRow(arr)
+                    Snackbar.make(p0!!, list.get(0).toString(), Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show()
+                }
+            }
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

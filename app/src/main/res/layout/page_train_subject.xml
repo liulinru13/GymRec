@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.mmrx.gymrec.ui.view.PageTrainSubject
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/global_16dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/view_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:id="@+id/trainSubjectNameTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/PageTrainSubjectText"
+            android:text="@string/train_subj_name_hint"/>
+
+        <TextView
+            android:id="@+id/trainSubjectDateTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/PageTrainSubjectText"
+            android:text="@string/train_subj_date_hint"
+            app:layout_constraintTop_toBottomOf="@id/trainSubjectNameTv"/>
+
+        <TextView
+            android:id="@+id/trainSubjectTimeTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/PageTrainSubjectText"
+            android:text="@string/train_subj_time_hint"
+            app:layout_constraintTop_toBottomOf="@id/trainSubjectDateTv"/>
+
+        <EditText
+            android:id="@+id/trainSubjectAdviceEtv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/global_40dp"
+            android:background="@null"
+            style="@style/PageTrainSubjectText"
+            android:hint="@string/train_subj_advice_hint"
+            android:textColorHint="@color/text_hint_text_color"
+            app:layout_constraintTop_toBottomOf="@id/trainSubjectTimeTv"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+    <Button
+        android:id="@+id/train_subject_add_new_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/train_subj_add_new_item"
+        android:background="@drawable/round_rect_red_white_bn_bg"
+        android:textColor="@color/white"
+        android:layout_marginTop="@dimen/global_6dp"
+        android:layout_alignParentBottom="true"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/train_subject_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@id/view_top"
+        android:layout_alignTop="@id/train_subject_add_new_item"/>
+
+</com.mmrx.gymrec.ui.view.PageTrainSubject>

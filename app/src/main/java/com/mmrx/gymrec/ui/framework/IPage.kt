@@ -18,4 +18,6 @@ interface IPage {
     fun getContentView(): View
     //获取当前页的展示等级
     fun getPageLevel(): Int
+    //悬浮按钮要不要展示
+    fun floatingButtonVisiable(): Boolean
 }

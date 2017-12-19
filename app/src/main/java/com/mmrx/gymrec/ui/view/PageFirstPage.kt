@@ -39,4 +39,8 @@ class PageFirstPage :LinearLayout , IPageContent{
     override fun getPageLevel(): Int {
         return Page.getPageLevelByName(Page.PAGE_KEY_FIRST_PAGE)
     }
+
+    override fun floatingButtonVisiable(): Boolean {
+        return true
+    }
 }

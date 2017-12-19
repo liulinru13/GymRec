@@ -16,6 +16,7 @@ class Page constructor(val context: Context,val layoutResId: Int) : IPage {
         private val pageMap: HashMap<String,Int> = HashMap()
         val PAGE_LEVEL_INVALID = -1 // 非法页面等级
         val PAGE_KEY_FIRST_PAGE = "first_page"//首页
+        val PAGE_KEY_TRAIN_SUBJECT = "train_subject_page"//训练计划页
 
         fun getPageLevelByName(key: String):Int{
             return pageMap.get(key) ?: PAGE_LEVEL_INVALID
@@ -23,6 +24,7 @@ class Page constructor(val context: Context,val layoutResId: Int) : IPage {
     }
     init {
         pageMap.put(PAGE_KEY_FIRST_PAGE,5)
+        pageMap.put(PAGE_KEY_TRAIN_SUBJECT,10)
     }
     var view : IPageContent? = null
 
@@ -52,5 +54,9 @@ class Page constructor(val context: Context,val layoutResId: Int) : IPage {
 
     override fun getPageLevel(): Int {
         return view?.getPageLevel() ?: PAGE_LEVEL_INVALID
+    }
+
+    override fun floatingButtonVisiable(): Boolean {
+        return view?.floatingButtonVisiable() ?: false
     }
 }

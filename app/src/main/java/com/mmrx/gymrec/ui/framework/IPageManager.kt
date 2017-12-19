@@ -7,7 +7,7 @@ package com.mmrx.gymrec.ui.framework
 interface IPageManager {
 
     //返回上一级页面
-    fun goBack()
+    fun goBack(): Boolean
     //返回指定页面
     fun goBackTo(pageId: String)
     //进入指定页面

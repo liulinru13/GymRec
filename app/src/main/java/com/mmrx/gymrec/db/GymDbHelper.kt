@@ -35,7 +35,8 @@ class GymDbHelper (context : Context) : ManagedSQLiteOpenHelper(context,"gymRecD
                 TrainTable.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
                 TrainTable.TRAIN_DATE to TEXT + NOT_NULL,
                 TrainTable.TRAIN_SUBJECT to TEXT + NOT_NULL,
-                TrainTable.ADVICE to TEXT)
+                TrainTable.ADVICE to TEXT,
+                TrainTable.TRAIN_MARKING to INTEGER)
         //record
         db.createTable(RecordTable.NAME,true,
                 RecordTable.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,

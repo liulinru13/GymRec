@@ -7,6 +7,7 @@ import android.view.*
 import com.mmrx.gymrec.bean.model.MuscleBean
 import com.mmrx.gymrec.bean.table.MuscleTable
 import com.mmrx.gymrec.db.GymDbHelper
+import com.mmrx.gymrec.ui.framework.EnumPageTitleType
 import com.mmrx.gymrec.ui.framework.IPageManager
 import com.mmrx.gymrec.ui.framework.PageQueue
 
@@ -22,9 +23,9 @@ class MainActivity : AppCompatActivity() ,PageQueue.IFloatingButtonListener{
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-
+        toolbar.setNavigationOnClickListener({_ -> pageManager?.onTitleBarAction(EnumPageTitleType.LEFT_NULL)})
         val rootView: ViewGroup = findViewById(R.id.root_view)
-        pageManager = PageQueue(this, rootView,this)
+        pageManager = PageQueue(this, rootView,this,toolbar)
         pageManager?.gotoPage(R.layout.page_first_page,null)
 
         val dbHelper = GymDbHelper.getInstance(this)
@@ -69,9 +70,13 @@ class MainActivity : AppCompatActivity() ,PageQueue.IFloatingButtonListener{
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
+        var isInnerAction = false
+        when (item.itemId) {
+            R.id.action_settings -> {
+                isInnerAction = pageManager?.onTitleBarAction(EnumPageTitleType.RIGHT_SETTING) ?: false
+            }
+            else -> null
         }
+        return if(isInnerAction) true else super.onOptionsItemSelected(item)
     }
 }

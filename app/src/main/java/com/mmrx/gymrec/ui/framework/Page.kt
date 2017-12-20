@@ -59,4 +59,12 @@ class Page constructor(val context: Context,val layoutResId: Int) : IPage {
     override fun floatingButtonVisiable(): Boolean {
         return view?.floatingButtonVisiable() ?: false
     }
+
+    override fun buildTitleBar(): PageTitleStruct? {
+        return view?.buildTitleBar() ?: null
+    }
+
+    override fun onTitleBarAction(action: EnumPageTitleType?): EnumPageTitleAction? {
+        return view?.onTitleBarAction(action) ?: null
+    }
 }

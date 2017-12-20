@@ -10,4 +10,5 @@ object TrainTable {
     val TRAIN_DATE = "train_date"//记录时间
     val ADVICE = "advice"//锻炼建议
     val TRAIN_SUBJECT = "train_subject"//训练主题
+    val TRAIN_MARKING = "train_marking"//
 }

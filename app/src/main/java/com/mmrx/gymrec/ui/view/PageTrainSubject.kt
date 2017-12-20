@@ -10,8 +10,7 @@ import com.afollestad.materialdialogs.DialogAction
 import com.afollestad.materialdialogs.MaterialDialog
 import com.mmrx.gymrec.R
 import com.mmrx.gymrec.ui.createViewByLayouytId
-import com.mmrx.gymrec.ui.framework.IPageContent
-import com.mmrx.gymrec.ui.framework.Page
+import com.mmrx.gymrec.ui.framework.*
 import kotlinx.android.synthetic.main.page_train_subject.view.*
 import kotlinx.android.synthetic.main.view_edit_tv.view.*
 
@@ -82,5 +81,14 @@ class PageTrainSubject : RelativeLayout,IPageContent,View.OnClickListener{
 
     override fun floatingButtonVisiable(): Boolean {
         return false
+    }
+
+    override fun buildTitleBar(): PageTitleStruct? {
+        return PageTitleStruct(EnumPageTitleType.LEFT_BACK
+                ,resources.getString(R.string.train_subj_page_title)
+                ,null)
+    }
+    override fun onTitleBarAction(action: EnumPageTitleType?): EnumPageTitleAction? {
+        return EnumPageTitleAction.PAGE_TITLE_ACTION_GO_BACK
     }
 }

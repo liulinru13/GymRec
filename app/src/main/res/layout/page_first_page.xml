@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.mmrx.gymrec.ui.view.PageFirstPage xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<com.mmrx.gymrec.ui.view.PageFirstPage
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/PagePadding"
+    android:background="@color/normal_bg_color_gray">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"/>
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/global_190dp"
+        android:gravity="center"
+        android:background="#e5e5e5"
+        android:text="图表"/>
+    
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/global_15dp"
+        android:layout_height="@dimen/global_400dp"/>
 
 </com.mmrx.gymrec.ui.view.PageFirstPage>

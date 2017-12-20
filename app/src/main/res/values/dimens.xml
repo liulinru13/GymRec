@@ -2,9 +2,17 @@
     <dimen name="fab_margin">16dp</dimen>
 
     <dimen name="text_size_normal">18dp</dimen>
+    <dimen name="global_1dp">1dp</dimen>
+    <dimen name="global_2dp">2dp</dimen>
     <dimen name="global_5dp">5dp</dimen>
     <dimen name="global_6dp">6dp</dimen>
+    <dimen name="global_8dp">8dp</dimen>
+    <dimen name="global_12dp">12dp</dimen>
+    <dimen name="global_15dp">15dp</dimen>
     <dimen name="global_16dp">16dp</dimen>
+    <dimen name="global_18dp">18dp</dimen>
 
     <dimen name="global_40dp">40dp</dimen>
+    <dimen name="global_190dp">190dp</dimen>
+    <dimen name="global_400dp">400dp</dimen>
 </resources>

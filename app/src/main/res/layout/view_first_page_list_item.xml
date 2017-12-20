@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/global_6dp"
+        android:paddingRight="@dimen/global_6dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/item"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="15">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/trainRecItemIcon"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/default_image"
+                app:civ_border_color="@color/normal_bg_color_gray"
+                app:civ_border_width="1dp"
+                app:layout_constraintBottom_toBottomOf="@id/item"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/item"
+                app:layout_constraintVertical_bias="0.5" />
+
+            <TextView
+                android:id="@+id/trainRecItemTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/app_name"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/global_18dp"
+                app:layout_constraintStart_toEndOf="@+id/trainRecItemIcon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/trainRecItemTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="@dimen/global_5dp"
+                android:text="2017年12月20日18:23:49"
+                android:textColor="@color/text_sub_color"
+                android:textSize="@dimen/global_12dp"
+                app:layout_constraintStart_toEndOf="@+id/trainRecItemIcon"
+                app:layout_constraintStart_toStartOf="@id/trainRecItemTitle"
+                app:layout_constraintTop_toBottomOf="@+id/trainRecItemTitle" />
+
+            <LinearLayout
+                android:id="@+id/trainItemsLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/global_15dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/trainRecItemTitle"
+                app:layout_constraintTop_toBottomOf="@+id/trainRecItemTime">
+
+                <ImageView
+                    android:layout_width="@dimen/global_12dp"
+                    android:layout_height="@dimen/global_12dp"
+                    android:src="@drawable/default_image"
+                    android:layout_marginRight="@dimen/global_5dp"/>
+                <ImageView
+                    android:layout_width="@dimen/global_12dp"
+                    android:layout_height="@dimen/global_12dp"
+                    android:src="@drawable/default_image"
+                    android:layout_marginRight="@dimen/global_5dp"/>
+                <ImageView
+                    android:layout_width="@dimen/global_12dp"
+                    android:layout_height="@dimen/global_12dp"
+                    android:src="@drawable/default_image"
+                    android:layout_marginRight="@dimen/global_5dp"/>
+                <ImageView
+                    android:layout_width="@dimen/global_12dp"
+                    android:layout_height="@dimen/global_12dp"
+                    android:src="@drawable/default_image"
+                    android:layout_marginRight="@dimen/global_5dp"/>
+                <ImageView
+                    android:layout_width="@dimen/global_12dp"
+                    android:layout_height="@dimen/global_12dp"
+                    android:src="@drawable/default_image"
+                    android:layout_marginRight="@dimen/global_5dp"/>
+            </LinearLayout>
+        </android.support.constraint.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/trainRecItemMarking"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="87"
+            android:textColor="@color/text_color"
+            android:textSize="48dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <include
+        layout="@layout/view_list_divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/global_1dp"
+        android:layout_marginBottom="@dimen/global_2dp"
+        android:layout_marginLeft="@dimen/global_6dp"
+        android:layout_marginRight="@dimen/global_6dp" />
+</LinearLayout>

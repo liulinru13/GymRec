@@ -12,4 +12,6 @@ interface IPageManager {
     fun goBackTo(pageId: String)
     //进入指定页面
     fun gotoPage(pageLayoutId: Int,map: HashMap<String,*>?)
+    //标题栏响应
+    fun onTitleBarAction(action: EnumPageTitleType?): Boolean
 }

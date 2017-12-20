@@ -1,7 +1,10 @@
 package com.mmrx.gymrec.ui.framework
 
 import android.content.Context
+import android.support.v7.widget.Toolbar
+import android.text.TextUtils
 import android.view.ViewGroup
+import com.mmrx.gymrec.R
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -11,12 +14,16 @@ import kotlin.collections.HashMap
  */
 class PageQueue constructor(val context: Context,val rootView: ViewGroup) : IPageManager {
 
-    constructor(context: Context,rootView: ViewGroup,floatListener: IFloatingButtonListener):this(context, rootView){
+    constructor(context: Context,rootView: ViewGroup,floatListener: IFloatingButtonListener
+                ,toolBar: Toolbar )
+            :this(context, rootView){
         this.floatListener = floatListener
+        this.toolBar = toolBar
     }
     //页面栈
     val pageQueue: Stack<IPage> = Stack<IPage>()
     var floatListener: IFloatingButtonListener? = null
+    var toolBar: Toolbar? = null
 
     override fun goBack(): Boolean{
         var topPage: IPage? = null
@@ -35,6 +42,7 @@ class PageQueue constructor(val context: Context,val rootView: ViewGroup) : IPag
                     .removeView(showPage.getContentView())
         }
         floatListener?.setVisiable(showPage.floatingButtonVisiable())
+        buildTitleBar(showPage.buildTitleBar())
         rootView.addView(showPage.getContentView())
         showPage.onForground()
         return true
@@ -68,11 +76,45 @@ class PageQueue constructor(val context: Context,val rootView: ViewGroup) : IPag
         //压栈
         pageQueue.push(newPage)
         rootView.removeAllViews()
+        buildTitleBar(newPage.buildTitleBar())
         rootView.addView(newPage.getContentView())
         newPage.onForground()
         if(map != null)
             newPage.receiveParam(map)
         newPage.onForground()
+    }
+
+    fun buildTitleBar(struct: PageTitleStruct?){
+        struct?.let {
+            //左侧
+            when(it.leftType) {
+                EnumPageTitleType.LEFT_BACK ->
+                    toolBar?.setNavigationIcon(R.drawable.arrow_white_left_18dp)
+                EnumPageTitleType.LEFT_PERSON_CENTER ->
+                    toolBar?.setNavigationIcon(R.drawable.person_center_white_18dp)
+                else ->
+                    toolBar?.setNavigationIcon(R.drawable.person_center_white_18dp)
+            }
+            //右侧
+//            when(it.rightType) {
+//            }
+            if(!TextUtils.isEmpty(it.title)){
+                toolBar?.title = it.title
+            }
+        }
+    }
+
+    override fun onTitleBarAction(action: EnumPageTitleType?): Boolean{
+        var topPage: IPage? = null
+        if(pageQueue.size > 0){
+            topPage = pageQueue.peek()
+        }
+        val action = topPage?.onTitleBarAction(action) ?: null
+        return when(action){
+            EnumPageTitleAction.PAGE_TITLE_ACTION_GO_BACK -> goBack()
+            EnumPageTitleAction.PAGE_TITLE_ACTION_PERSON_CENTER -> true
+            else -> false
+        }
     }
 
     interface IFloatingButtonListener{

@@ -20,4 +20,8 @@ interface IPage {
     fun getPageLevel(): Int
     //悬浮按钮要不要展示
     fun floatingButtonVisiable(): Boolean
+    //标题的设置
+    fun buildTitleBar():PageTitleStruct?
+    //标题栏响应
+    fun onTitleBarAction(action: EnumPageTitleType?): EnumPageTitleAction?
 }

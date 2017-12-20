@@ -1,15 +1,17 @@
 <resources>
     <string name="app_name">GymRec</string>
+    <string name="app_title">GymRecord</string>
     <string name="action_settings">Settings</string>
     <string name="ok">确定</string>
     <string name="cancel">取消</string>
 
     <string name="view_edit_hint">请输入内容</string>
-    <string name="train_subj_name_hint">点击输入训练主题</string>
-    <string name="train_subj_date_hint">点击输入训练日期</string>
-    <string name="train_subj_time_hint">点击输入训练时间</string>
-    <string name="train_subj_advice_hint">点击输入训练感受</string>
-    <string name="train_subj_add_new_item">添加训练项目</string>
-    <string name="train_subj_name_dialog_title">请输入训练主题</string>
+    <string name="train_subj_page_title">健身计划</string>
+    <string name="train_subj_name_hint">点击输入健身主题</string>
+    <string name="train_subj_date_hint">点击输入健身日期</string>
+    <string name="train_subj_time_hint">点击输入健身时间</string>
+    <string name="train_subj_advice_hint">点击输入健身感受</string>
+    <string name="train_subj_add_new_item">添加健身项目</string>
+    <string name="train_subj_name_dialog_title">请输入健身主题</string>
 
 </resources>

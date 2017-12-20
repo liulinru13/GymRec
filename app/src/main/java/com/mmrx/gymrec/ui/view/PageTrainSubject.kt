@@ -26,36 +26,36 @@ class PageTrainSubject : RelativeLayout,IPageContent,View.OnClickListener{
 
     override fun onFinishInflate() {
         super.onFinishInflate()
-        trainSubjectNameTv.setOnClickListener(this)
+//        trainSubjectNameTv.setOnClickListener(this)
     }
 
     override fun onClick(p0: View?) {
         when(p0?.id) {
-            trainSubjectNameTv.id -> {
-                var title: String? = null
-                val editLayout = createViewByLayouytId(R.layout.view_edit_tv, context)
-                dialog = MaterialDialog.Builder(context)
-                        .title(R.string.train_subj_name_dialog_title)
-                        .customView(editLayout,false)
-                        .positiveText(R.string.ok)
-                        .negativeText(R.string.cancel)
-                        .onPositive(object : MaterialDialog.SingleButtonCallback{
-                            override fun onClick(dialog: MaterialDialog, which: DialogAction) {
-                                title = editLayout.findViewById<EditText>(R.id.viewEditText).text.toString()
-                                if(!TextUtils.isEmpty(title)){
-                                    trainSubjectNameTv.setText(title)
-                                    dialog.dismiss()
-                                }
-                            }
-                        })
-                        .onNegative(object :MaterialDialog.SingleButtonCallback{
-                            override fun onClick(dialog: MaterialDialog, which: DialogAction) {
-                                dialog.dismiss()
-                            }
-                        })
-                        .build()
-                dialog?.show()
-            }
+//            trainSubjectNameTv.id -> {
+//                var title: String? = null
+//                val editLayout = createViewByLayouytId(R.layout.view_edit_tv, context)
+//                dialog = MaterialDialog.Builder(context)
+//                        .title(R.string.train_subj_name_dialog_title)
+//                        .customView(editLayout,false)
+//                        .positiveText(R.string.ok)
+//                        .negativeText(R.string.cancel)
+//                        .onPositive(object : MaterialDialog.SingleButtonCallback{
+//                            override fun onClick(dialog: MaterialDialog, which: DialogAction) {
+//                                title = editLayout.findViewById<EditText>(R.id.viewEditText).text.toString()
+//                                if(!TextUtils.isEmpty(title)){
+//                                    trainSubjectNameTv.setText(title)
+//                                    dialog.dismiss()
+//                                }
+//                            }
+//                        })
+//                        .onNegative(object :MaterialDialog.SingleButtonCallback{
+//                            override fun onClick(dialog: MaterialDialog, which: DialogAction) {
+//                                dialog.dismiss()
+//                            }
+//                        })
+//                        .build()
+//                dialog?.show()
+//            }
         }
     }
 

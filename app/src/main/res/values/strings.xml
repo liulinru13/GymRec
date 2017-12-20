@@ -7,7 +7,8 @@
 
     <string name="view_edit_hint">请输入内容</string>
     <string name="train_subj_page_title">健身计划</string>
-    <string name="train_subj_name_hint">点击输入健身主题</string>
+    <string name="train_subj_name">健身主题：</string>
+    <string name="train_subj_name_hint">点击修改健身主题</string>
     <string name="train_subj_date_hint">点击输入健身日期</string>
     <string name="train_subj_time_hint">点击输入健身时间</string>
     <string name="train_subj_advice_hint">点击输入健身感受</string>

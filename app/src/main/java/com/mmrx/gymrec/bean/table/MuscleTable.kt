@@ -8,4 +8,5 @@ object MuscleTable {
     val NAME = "muscle"
     val ID = "_id"
     val MUSCLE_GROUP = "muscle_group"//肌肉群
+    val MUSCLE_ICON = "muscle_icon"//代表图片
 }

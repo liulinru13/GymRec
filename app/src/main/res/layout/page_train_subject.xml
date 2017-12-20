@@ -2,48 +2,47 @@
 <com.mmrx.gymrec.ui.view.PageTrainSubject
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="@dimen/global_16dp">
+    android:layout_height="match_parent">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/view_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/PagePadding"
+        android:layout_marginTop="@dimen/global_16dp"
         android:layout_alignParentTop="true">
 
         <TextView
-            android:id="@+id/trainSubjectNameTv"
+            android:id="@+id/tv1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/PageTrainSubjectText"
-            android:text="@string/train_subj_name_hint"/>
+            android:text="@string/train_subj_name"/>
 
         <TextView
-            android:id="@+id/trainSubjectDateTv"
+            android:id="@+id/trainSubjectName"
+            style="@style/PageTrainSubjectContentText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/PageTrainSubjectText"
-            android:text="@string/train_subj_date_hint"
-            app:layout_constraintTop_toBottomOf="@id/trainSubjectNameTv"/>
+            android:maxLines="1"
+            android:text="@string/train_subj_name_hint"
+            app:layout_constraintBottom_toBottomOf="@+id/tv1"
+            app:layout_constraintStart_toEndOf="@+id/tv1"
+            app:layout_constraintTop_toTopOf="@+id/tv1" />
 
-        <TextView
-            android:id="@+id/trainSubjectTimeTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/PageTrainSubjectText"
-            android:text="@string/train_subj_time_hint"
-            app:layout_constraintTop_toBottomOf="@id/trainSubjectDateTv"/>
-
-        <EditText
-            android:id="@+id/trainSubjectAdviceEtv"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/global_40dp"
-            android:background="@null"
-            style="@style/PageTrainSubjectText"
-            android:hint="@string/train_subj_advice_hint"
-            android:textColorHint="@color/text_hint_text_color"
-            app:layout_constraintTop_toBottomOf="@id/trainSubjectTimeTv"/>
+        <ImageView
+            android:id="@+id/trainSubjectNameIcon"
+            android:layout_width="@dimen/global_12dp"
+            android:layout_height="@dimen/global_12dp"
+            android:scaleType="fitXY"
+            android:layout_marginLeft="@dimen/global_5dp"
+            android:layout_marginRight="@dimen/global_5dp"
+            android:src="@drawable/ic_mode_edit_black_18dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv1"
+            app:layout_constraintStart_toEndOf="@+id/trainSubjectName"
+            app:layout_constraintTop_toTopOf="@+id/tv1" />
 
     </android.support.constraint.ConstraintLayout>
 

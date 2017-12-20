@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.mmrx.gymrec.R
+import com.mmrx.gymrec.bean.model.TrainRecBean
+import com.mmrx.gymrec.db.GymDbHelper
 import com.mmrx.gymrec.ui.framework.*
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.page_first_page.view.*
@@ -31,10 +33,11 @@ class PageFirstPage :LinearLayout , IPageContent{
     }
 
     override fun onForground() {
-        var tempList = mutableListOf<TrainRecBean>()
-        for(i in 1 .. 10){
-            tempList.add(TrainRecBean(1,"测试文本测试文本","2017年12月20日19:36:14",88+i, listOf()))
-        }
+//        var tempList = mutableListOf<TrainRecBean>()
+//        for(i in 1 .. 10){
+//            tempList.add(TrainRecBean(1,"测试文本测试文本","2017年12月20日19:36:14",88+i, listOf()))
+//        }
+        val tempList = GymDbHelper.getInstance(context).getTrainRecData()
         adapter.updateDataList(tempList)
     }
 
@@ -118,7 +121,4 @@ class PageFirstPage :LinearLayout , IPageContent{
             trainItemsLayout = view.findViewById(R.id.trainItemsLayout)
         }
     }
-
-    data class TrainRecBean(val recIcon: Int,val title: String,val dataTime: String
-                            ,val marking: Int,val items: List<Int>)
 }

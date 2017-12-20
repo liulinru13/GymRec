@@ -1,7 +1,8 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
 
-    <dimen name="text_size_normal">18dp</dimen>
+    <dimen name="text_size_normal_18">18dp</dimen>
+    <dimen name="text_size_normal_14">14dp</dimen>
     <dimen name="global_1dp">1dp</dimen>
     <dimen name="global_2dp">2dp</dimen>
     <dimen name="global_5dp">5dp</dimen>
@@ -14,5 +15,6 @@
 
     <dimen name="global_40dp">40dp</dimen>
     <dimen name="global_190dp">190dp</dimen>
+    <dimen name="global_300dp">300dp</dimen>
     <dimen name="global_400dp">400dp</dimen>
 </resources>

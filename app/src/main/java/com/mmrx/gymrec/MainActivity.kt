@@ -29,20 +29,7 @@ class MainActivity : AppCompatActivity() ,PageQueue.IFloatingButtonListener{
         pageManager?.gotoPage(R.layout.page_first_page,null)
 
         val dbHelper = GymDbHelper.getInstance(this)
-        fab.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(p0: View?) {
-                pageManager?.gotoPage(R.layout.page_train_subject,null)
-//                dbHelper.use{
-//                    val rowParser = classParser<MuscleBean>()
-//                    val result = select(MuscleTable.NAME)
-//                    val list = result.parseList(rowParser)
-////                    val arr = emptyArray<Any?>()
-////                    rowParser.parseRow(arr)
-//                    Snackbar.make(p0!!, list.get(0).toString(), Snackbar.LENGTH_LONG)
-//                    .setAction("Action", null).show()
-//                }
-            }
-        })
+        fab.setOnClickListener({_ ->pageManager?.gotoPage(R.layout.page_train_subject,null) })
     }
 
     override fun setVisiable(visiable: Boolean) {

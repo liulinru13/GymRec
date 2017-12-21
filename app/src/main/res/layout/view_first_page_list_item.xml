@@ -8,55 +8,53 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="@dimen/first_page_list_item_h"
         android:orientation="horizontal"
-        android:paddingLeft="@dimen/global_6dp"
-        android:paddingRight="@dimen/global_6dp">
+        android:paddingLeft="@dimen/content_padding_lr"
+        android:paddingRight="@dimen/content_padding_lr">
 
         <TextView
             android:id="@+id/trainRecItemMarking"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_weight="1"
+            android:layout_alignParentEnd="true"
             android:gravity="center"
             android:text="87"
             android:textColor="@color/text_color"
-            android:textSize="48dp"
+            android:textSize="@dimen/first_page_list_marking_text_size"
             android:textStyle="bold" />
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/item"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@id/trainRecItemMarking">
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@id/trainRecItemMarking">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/trainRecItemIcon"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_marginLeft="16dp"
+                android:layout_width="@dimen/first_page_list_icon_wh"
+                android:layout_height="@dimen/first_page_list_icon_wh"
+                android:layout_marginStart="@dimen/global_16dp"
                 android:src="@drawable/default_image"
                 app:civ_border_color="@color/normal_bg_color_gray"
-                app:civ_border_width="1dp"
+                app:civ_border_width="@dimen/global_1dp"
                 app:layout_constraintBottom_toBottomOf="@id/item"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@id/item"
-                app:layout_constraintVertical_bias="0.5" />
+                app:layout_constraintTop_toTopOf="@id/item" />
 
             <TextView
                 android:id="@+id/trainRecItemTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/first_page_list_title_margin_lr"
+                android:layout_marginStart="@dimen/first_page_list_title_margin_lr"
+                android:layout_marginTop="@dimen/first_page_list_item_margin_t"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="@string/app_name"
                 android:textColor="@color/text_color"
-                android:textSize="@dimen/global_18dp"
+                android:textSize="@dimen/text_size_normal_18"
                 app:layout_constraintStart_toEndOf="@+id/trainRecItemIcon"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -64,11 +62,11 @@
                 android:id="@+id/trainRecItemTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="@dimen/global_5dp"
+                android:layout_marginEnd="@dimen/first_page_list_title_margin_lr"
+                android:layout_marginTop="@dimen/first_page_list_item_margin_t"
                 android:text="2017年12月20日18:23:49"
                 android:textColor="@color/text_sub_color"
-                android:textSize="@dimen/global_12dp"
+                android:textSize="@dimen/text_size_normal_12"
                 app:layout_constraintStart_toEndOf="@+id/trainRecItemIcon"
                 app:layout_constraintStart_toStartOf="@id/trainRecItemTitle"
                 app:layout_constraintTop_toBottomOf="@+id/trainRecItemTitle" />
@@ -76,35 +74,35 @@
             <LinearLayout
                 android:id="@+id/trainItemsLayout"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/global_15dp"
+                android:layout_height="@dimen/first_page_list_item_row_h"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/trainRecItemTitle"
                 app:layout_constraintTop_toBottomOf="@+id/trainRecItemTime">
 
                 <ImageView
-                    android:layout_width="@dimen/global_12dp"
-                    android:layout_height="@dimen/global_12dp"
+                    android:layout_width="@dimen/icon_small_wh"
+                    android:layout_height="@dimen/icon_small_wh"
                     android:src="@drawable/default_image"
                     android:layout_marginRight="@dimen/global_5dp"/>
                 <ImageView
-                    android:layout_width="@dimen/global_12dp"
-                    android:layout_height="@dimen/global_12dp"
+                    android:layout_width="@dimen/icon_small_wh"
+                    android:layout_height="@dimen/icon_small_wh"
                     android:src="@drawable/default_image"
                     android:layout_marginRight="@dimen/global_5dp"/>
                 <ImageView
-                    android:layout_width="@dimen/global_12dp"
-                    android:layout_height="@dimen/global_12dp"
+                    android:layout_width="@dimen/icon_small_wh"
+                    android:layout_height="@dimen/icon_small_wh"
                     android:src="@drawable/default_image"
                     android:layout_marginRight="@dimen/global_5dp"/>
                 <ImageView
-                    android:layout_width="@dimen/global_12dp"
-                    android:layout_height="@dimen/global_12dp"
+                    android:layout_width="@dimen/icon_small_wh"
+                    android:layout_height="@dimen/icon_small_wh"
                     android:src="@drawable/default_image"
                     android:layout_marginRight="@dimen/global_5dp"/>
                 <ImageView
-                    android:layout_width="@dimen/global_12dp"
-                    android:layout_height="@dimen/global_12dp"
+                    android:layout_width="@dimen/icon_small_wh"
+                    android:layout_height="@dimen/icon_small_wh"
                     android:src="@drawable/default_image"
                     android:layout_marginRight="@dimen/global_5dp"/>
             </LinearLayout>
@@ -116,7 +114,7 @@
     <include
         layout="@layout/view_list_divider"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/global_1dp"
+        android:layout_height="@dimen/list_divider_h"
         android:layout_marginBottom="@dimen/global_2dp"
         android:layout_marginLeft="@dimen/global_6dp"
         android:layout_marginRight="@dimen/global_6dp" />

@@ -21,7 +21,7 @@ class PageQueue constructor(val context: Context,val rootView: ViewGroup) : IPag
         this.toolBar = toolBar
     }
     //页面栈
-    val pageQueue: Stack<IPage> = Stack<IPage>()
+    val pageQueue: Stack<IPage> = Stack()
     var floatListener: IFloatingButtonListener? = null
     var toolBar: Toolbar? = null
 
@@ -78,7 +78,6 @@ class PageQueue constructor(val context: Context,val rootView: ViewGroup) : IPag
         rootView.removeAllViews()
         buildTitleBar(newPage.buildTitleBar())
         rootView.addView(newPage.getContentView())
-        newPage.onForground()
         if(map != null)
             newPage.receiveParam(map)
         newPage.onForground()

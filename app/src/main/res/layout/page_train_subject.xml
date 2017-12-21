@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.mmrx.gymrec.ui.view.PageTrainSubject
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/normal_bg_color_gray">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/view_top"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         style="@style/PagePadding"
-        android:layout_marginTop="@dimen/global_16dp"
-        android:layout_alignParentTop="true">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/global_16dp">
 
         <TextView
             android:id="@+id/tv1"
+            style="@style/PageTrainSubjectText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/PageTrainSubjectText"
-            android:text="@string/train_subj_name"/>
+            android:text="@string/train_subj_name" />
 
         <TextView
             android:id="@+id/trainSubjectName"
@@ -27,6 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="1"
+            android:maxWidth="200dp"
             android:text="@string/train_subj_name_hint"
             app:layout_constraintBottom_toBottomOf="@+id/tv1"
             app:layout_constraintStart_toEndOf="@+id/tv1"
@@ -34,33 +35,97 @@
 
         <ImageView
             android:id="@+id/trainSubjectNameIcon"
-            android:layout_width="@dimen/global_12dp"
-            android:layout_height="@dimen/global_12dp"
+            android:layout_width="@dimen/icon_small_wh"
+            android:layout_height="@dimen/icon_small_wh"
+            android:layout_margin="@dimen/icon_small_margin"
             android:scaleType="fitXY"
-            android:layout_marginLeft="@dimen/global_5dp"
-            android:layout_marginRight="@dimen/global_5dp"
             android:src="@drawable/ic_mode_edit_black_18dp"
             app:layout_constraintBottom_toBottomOf="@+id/tv1"
             app:layout_constraintStart_toEndOf="@+id/trainSubjectName"
             app:layout_constraintTop_toTopOf="@+id/tv1" />
 
+        <TextView
+            android:id="@+id/tv2"
+            style="@style/PageTrainSubjectText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/global_8dp"
+            android:text="@string/train_subj_date"
+            app:layout_constraintTop_toBottomOf="@+id/tv1" />
+
+        <TextView
+            android:id="@+id/trainSubjectDate"
+            style="@style/PageTrainSubjectContentText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="@string/train_subj_date_hint"
+            app:layout_constraintBottom_toBottomOf="@+id/tv2"
+            app:layout_constraintStart_toEndOf="@+id/tv2"
+            app:layout_constraintTop_toTopOf="@+id/tv2" />
+
+        <TextView
+            android:id="@+id/trainSubjectTime"
+            style="@style/PageTrainSubjectContentText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="@string/train_subj_time_hint"
+            android:layout_marginStart="@dimen/global_5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv2"
+            app:layout_constraintStart_toEndOf="@+id/trainSubjectDate"
+            app:layout_constraintTop_toTopOf="@+id/tv2" />
+
+        <ImageView
+            android:id="@+id/trainSubjectDateIcon"
+            android:layout_width="@dimen/icon_small_wh"
+            android:layout_height="@dimen/icon_small_wh"
+            android:layout_margin="@dimen/icon_small_margin"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_mode_edit_black_18dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv2"
+            app:layout_constraintStart_toEndOf="@+id/trainSubjectTime"
+            app:layout_constraintTop_toTopOf="@+id/tv2" />
+
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/train_subj_advice"
+            android:layout_marginTop="@dimen/global_8dp"
+            android:textSize="@dimen/text_size_normal_12"
+            app:layout_constraintTop_toBottomOf="@+id/tv2" />
+
+        <EditText
+            android:id="@+id/trainSubjectAdviceEdit"
+            style="@style/PageTrainSubjectContentText"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/global_100dp"
+            android:background="@drawable/train_subj_edit_bg"
+            android:layout_marginLeft="0dp"
+            android:hint="@string/train_subj_advice_hint"
+            android:maxLines="5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv3" />
+
     </android.support.constraint.ConstraintLayout>
 
     <Button
-        android:id="@+id/train_subject_add_new_item"
+        android:id="@+id/trainSubjectAddNewItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/train_subj_add_new_item"
         android:background="@drawable/round_rect_red_white_bn_bg"
         android:textColor="@color/white"
-        android:layout_marginTop="@dimen/global_6dp"
+        android:layout_margin="@dimen/global_15dp"
         android:layout_alignParentBottom="true"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/train_subject_list"
+    <com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
+        android:id="@+id/trainSubjectItemList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignBottom="@id/view_top"
-        android:layout_alignTop="@id/train_subject_add_new_item"/>
+        android:layout_alignTop="@id/trainSubjectAddNewItem"/>
 
-</com.mmrx.gymrec.ui.view.PageTrainSubject>
+</RelativeLayout>

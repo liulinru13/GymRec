@@ -4,9 +4,11 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="normal_bg_color_gray">#f5f5f5</color>
+    <color name="normal_bg_color_gray">#fafafa</color>
     <color name="list_view_divider_color">#d1d1d1</color>
+    <color name="edit_text_bg_color">#ededed</color>
     <color name="text_hint_text_color">#adadad</color>
+    <color name="text_bold_color">#1d1d1d</color>
     <color name="text_color">#323232</color>
     <color name="text_sub_color">#707070</color>
     <color name="red">#fa4d4d</color>

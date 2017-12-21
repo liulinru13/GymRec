@@ -7,6 +7,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import com.mmrx.gymrec.R
 import com.mmrx.gymrec.bean.model.TrainRecBean
@@ -19,17 +20,14 @@ import kotlinx.android.synthetic.main.page_first_page.view.*
  * page_first_page.xml
  * Created by mmrx on 17/12/16.
  */
-class PageFirstPage :LinearLayout , IPageContent{
+class PageFirstPage :PageContentImp{
+    private val adapter: TrainRecAdapter by lazy { TrainRecAdapter(mutableListOf<TrainRecBean>()) }
 
-    val adapter: TrainRecAdapter by lazy { TrainRecAdapter(mutableListOf<TrainRecBean>()) }
-    constructor(context: Context?) : super(context)
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+    constructor(context: Context, layoutId: Int) : super(context, layoutId)
 
-    override fun onFinishInflate() {
-        super.onFinishInflate()
-        listView.layoutManager = LinearLayoutManager(context)
-        listView.adapter = adapter
+    override fun init() {
+        rootView.listView.layoutManager = LinearLayoutManager(context)
+        rootView.listView.adapter = adapter
     }
 
     override fun onForground() {
@@ -50,9 +48,6 @@ class PageFirstPage :LinearLayout , IPageContent{
     override fun onRemove() {
     }
 
-    override fun getContentView(): View {
-        return this
-    }
 
     override fun getPageLevel(): Int {
         return Page.getPageLevelByName(Page.PAGE_KEY_FIRST_PAGE)
@@ -64,7 +59,7 @@ class PageFirstPage :LinearLayout , IPageContent{
 
     override fun buildTitleBar(): PageTitleStruct? {
         return PageTitleStruct(EnumPageTitleType.LEFT_PERSON_CENTER
-                ,resources.getString(R.string.app_title)
+                ,getContentView().context.getString(R.string.app_title)
                 ,null)
     }
 

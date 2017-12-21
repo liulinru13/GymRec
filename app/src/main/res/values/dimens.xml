@@ -1,8 +1,22 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="icon_small_wh">12dp</dimen>
+    <dimen name="icon_small_margin">5dp</dimen>
+    <dimen name="list_divider_h">1dp</dimen>
+    <dimen name="content_padding_lr">6dp</dimen>
 
-    <dimen name="text_size_normal_18">18dp</dimen>
-    <dimen name="text_size_normal_14">14dp</dimen>
+    <dimen name="text_size_normal_18">18sp</dimen>
+    <dimen name="text_size_normal_14">14sp</dimen>
+    <dimen name="text_size_normal_12">12sp</dimen>
+    <dimen name="first_page_list_item_h">80dp</dimen>
+    <dimen name="first_page_list_marking_text_size">48sp</dimen>
+    <dimen name="first_page_list_icon_wh">45dp</dimen>
+    <dimen name="first_page_list_title_margin_lr">16dp</dimen>
+    <dimen name="first_page_list_item_margin_t">5dp</dimen>
+    <dimen name="first_page_list_item_row_h">15dp</dimen>
+
+    <dimen name="train_subj_edit_h">100dp</dimen>
+
     <dimen name="global_1dp">1dp</dimen>
     <dimen name="global_2dp">2dp</dimen>
     <dimen name="global_5dp">5dp</dimen>
@@ -14,6 +28,7 @@
     <dimen name="global_18dp">18dp</dimen>
 
     <dimen name="global_40dp">40dp</dimen>
+    <dimen name="global_100dp">100dp</dimen>
     <dimen name="global_190dp">190dp</dimen>
     <dimen name="global_300dp">300dp</dimen>
     <dimen name="global_400dp">400dp</dimen>

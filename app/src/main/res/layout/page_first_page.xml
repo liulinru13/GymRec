@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.mmrx.gymrec.ui.view.PageFirstPage
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -8,16 +8,19 @@
     android:background="@color/normal_bg_color_gray">
 
     <TextView
+        android:id="@+id/view1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/global_190dp"
         android:gravity="center"
         android:background="#e5e5e5"
+        android:layout_alignParentTop="true"
         android:text="图表"/>
     
     <android.support.v7.widget.RecyclerView
         android:id="@+id/listView"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="@dimen/global_15dp"
-        android:layout_height="@dimen/global_300dp"/>
+        android:layout_toEndOf="@id/view1"/>
 
-</com.mmrx.gymrec.ui.view.PageFirstPage>
+</RelativeLayout>

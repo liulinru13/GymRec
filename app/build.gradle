@@ -54,5 +54,7 @@ dependencies {
     implementation 'com.afollestad.material-dialogs:commons:0.9.6.0'
     //圆角图片库
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+    //侧滑菜单 侧滑删除、拖拽 下拉刷新和加载更多 Sticky效果和Item分组
+    implementation 'com.yanzhenjie:recyclerview-swipe:1.1.3'
 
 }

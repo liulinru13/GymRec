@@ -9,6 +9,6 @@
         android:layout_height="wrap_content"
         android:hint="@string/view_edit_hint"
         android:textColorHint="@color/text_hint_text_color"
-        android:textSize="@dimen/text_size_normal"
+        android:textSize="@dimen/text_size_normal_14"
         android:maxLines="1"/>
 </FrameLayout>

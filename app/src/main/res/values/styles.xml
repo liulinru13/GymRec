@@ -29,7 +29,7 @@
         <item name="android:textSize">@dimen/text_size_normal_18</item>
         <item name="android:textStyle">bold</item>
         <item name="android:layout_marginRight">@dimen/global_5dp</item>
-        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textColor">@color/text_bold_color</item>
     </style>
 
     <style name="PageTrainSubjectContentText" parent="PageMargin_TB">

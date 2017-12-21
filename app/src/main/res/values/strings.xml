@@ -9,10 +9,12 @@
     <string name="train_subj_page_title">健身计划</string>
     <string name="train_subj_name">健身主题：</string>
     <string name="train_subj_name_hint">点击修改健身主题</string>
-    <string name="train_subj_date_hint">点击输入健身日期</string>
-    <string name="train_subj_time_hint">点击输入健身时间</string>
-    <string name="train_subj_advice_hint">点击输入健身感受</string>
+    <string name="train_subj_date">健身日期：</string>
+    <string name="train_subj_date_hint">2017年12月21日</string>
+    <string name="train_subj_time_hint">11:27:51</string>
+    <string name="train_subj_advice">健身感受</string>
+    <string name="train_subj_advice_hint">请输入健身感受</string>
     <string name="train_subj_add_new_item">添加健身项目</string>
-    <string name="train_subj_name_dialog_title">请输入健身主题</string>
+    <string name="train_subj_name_dialog_title">健身主题</string>
 
 </resources>

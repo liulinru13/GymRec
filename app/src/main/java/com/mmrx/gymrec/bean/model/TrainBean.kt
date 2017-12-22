@@ -3,5 +3,5 @@ package com.mmrx.gymrec.bean.model
 /**
  * Created by mmrx on 17/12/8.
  */
-data class TrainBean (val _id: Int,var train_date: String,var advice: String,
-                      val train_subject: String,val train_marking: Int)
+data class TrainBean (var _id: Int,var train_date: String,var advice: String,
+                      var train_subject: String,var train_marking: Int,var train_icon: Int)

@@ -31,7 +31,9 @@ class PageQueue constructor(val context: Context,val rootView: ViewGroup) : IPag
         if(pageQueue.size  <= 1) {
             return false
         }
-        topPage = pageQueue.pop();
+        topPage = pageQueue.peek();
+        if(topPage.innerBack()) return true else pageQueue.pop()
+
         showPage = pageQueue.peek();
 
         topPage.onBackGround()

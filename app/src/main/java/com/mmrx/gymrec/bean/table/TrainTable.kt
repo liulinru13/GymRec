@@ -11,4 +11,5 @@ object TrainTable {
     val ADVICE = "advice"//锻炼建议
     val TRAIN_SUBJECT = "train_subject"//训练主题
     val TRAIN_MARKING = "train_marking"//
+    val TRAIN_ICON = "train_icon"//训练图标
 }

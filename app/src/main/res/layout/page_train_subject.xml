@@ -10,7 +10,7 @@
         android:id="@+id/view_top"
         style="@style/PagePadding"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="@dimen/global_16dp">
 
@@ -125,7 +125,10 @@
         android:id="@+id/trainSubjectItemList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignBottom="@id/view_top"
-        android:layout_alignTop="@id/trainSubjectAddNewItem"/>
+        android:layout_marginStart="@dimen/global_8dp"
+        android:layout_marginEnd="@dimen/global_8dp"
+        android:layout_marginTop="@dimen/global_8dp"
+        android:layout_below="@id/view_top"
+        android:layout_above="@id/trainSubjectAddNewItem"/>
 
 </RelativeLayout>

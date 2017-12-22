@@ -24,6 +24,10 @@ abstract class PageContentImp(val context: Context,val layoutId: Int):IPageConte
         return rootView
     }
 
+    override fun innerBack(): Boolean {
+        return false
+    }
+
     override fun floatingButtonVisiable(): Boolean {
         return false
     }

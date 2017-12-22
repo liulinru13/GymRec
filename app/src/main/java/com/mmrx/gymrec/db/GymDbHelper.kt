@@ -29,6 +29,8 @@ class GymDbHelper (context : Context) : ManagedSQLiteOpenHelper(context,"gymRecD
         }
     }
 
+    private val dbActiveListener: MutableList<IDBActiveListener> = mutableListOf()
+
     override fun onCreate(db: SQLiteDatabase) {
         //muscle
         db.createTable(MuscleTable.NAME,true,
@@ -41,6 +43,7 @@ class GymDbHelper (context : Context) : ManagedSQLiteOpenHelper(context,"gymRecD
                 TrainTable.TRAIN_DATE to TEXT + NOT_NULL,
                 TrainTable.TRAIN_SUBJECT to TEXT + NOT_NULL,
                 TrainTable.ADVICE to TEXT,
+                TrainTable.TRAIN_ICON to INTEGER,
                 TrainTable.TRAIN_MARKING to INTEGER)
         //record
         db.createTable(RecordTable.NAME,true,
@@ -70,6 +73,69 @@ class GymDbHelper (context : Context) : ManagedSQLiteOpenHelper(context,"gymRecD
         db.dropTable(TrainTable.NAME,true)
         db.dropTable(MuscleTable.NAME,true)
         onCreate(db)
+    }
+
+    @Synchronized fun addDBActiveListener(listener: IDBActiveListener){
+        dbActiveListener.add(listener)
+    }
+
+    @Synchronized fun removeDBActiveListener(listener: IDBActiveListener){
+        dbActiveListener.remove(listener)
+    }
+
+    private @Synchronized fun notifyDBAcitveListener(tableName: String){
+        for(listener in dbActiveListener){
+            listener.dbUpdate(tableName)
+        }
+    }
+
+    /**
+     * 通过id来搜索健身计划
+     */
+    fun queryTrainResById(id: Int):TrainBean?{
+        var bean: TrainBean? = null
+        instance?.use {
+            val trainRowParser = classParser<TrainBean>()
+            val trainTableResult = select(TrainTable.NAME).whereSimple(TrainTable.ID + "=?",id.toString())
+            val trainList = trainTableResult.parseList(trainRowParser)
+            if(trainList.isNotEmpty())
+                bean = trainList[0]
+        }
+        return bean
+    }
+
+    /**
+     * 插入一条新的健身计划
+     */
+    fun insertNewTrainRec(dateTime: String,subjectTitle: String):Int{
+        var rowId = -1
+        instance?.use {
+            rowId = insert(TrainTable.NAME,
+                    TrainTable.TRAIN_DATE to dateTime,
+                    TrainTable.TRAIN_SUBJECT to subjectTitle,
+                    TrainTable.ADVICE to "",
+                    TrainTable.TRAIN_MARKING to 0,
+                    TrainTable.TRAIN_ICON to -1).toInt()
+        }
+        return rowId
+    }
+
+    /**
+     * 更新一条新的健身计划
+     */
+    fun updateTrainRec(trainBean: TrainBean){
+        var affectRow = 0
+        instance?.use {
+            affectRow = update(TrainTable.NAME,
+                    TrainTable.TRAIN_SUBJECT to trainBean.train_subject,
+                    TrainTable.TRAIN_DATE to trainBean.train_date,
+                    TrainTable.ADVICE to trainBean.advice,
+                    TrainTable.TRAIN_MARKING to trainBean.train_marking,
+                    TrainTable.TRAIN_ICON to trainBean.train_icon)
+                    .whereSimple(TrainTable.ID + " =?",trainBean._id.toString())
+                    .exec()
+        }
+        if(affectRow > 0) notifyDBAcitveListener(TrainTable.NAME)
     }
 
     fun getTrainRecData():List<TrainRecBean>{

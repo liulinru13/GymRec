@@ -89,8 +89,10 @@ class PageFirstPage :PageContentImp{
             holder?.trainRecTitle?.text = bean.title
             holder?.trainRecTime?.text = bean.dataTime
             holder?.trainMarking?.text = bean.marking.toString()
-            for(i in bean.items){
+            bean.items.let {
+                for (i in bean.items!!) {
 
+                }
             }
         }
 

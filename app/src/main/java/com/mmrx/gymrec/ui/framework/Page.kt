@@ -84,4 +84,8 @@ class Page constructor(val context: Context,val layoutResId: Int) : IPage {
     override fun onTitleBarAction(action: EnumPageTitleType?): EnumPageTitleAction? {
         return view.onTitleBarAction(action)
     }
+
+    override fun innerBack(): Boolean {
+        return view.innerBack()
+    }
 }

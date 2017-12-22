@@ -10,6 +10,8 @@ interface IPage {
     fun onForground()
     //向页面传入参数
     fun <T: Any>receiveParam(map: HashMap<String,T>)
+    //页面退出前需要通知内部是否有额外操作
+    fun innerBack():Boolean
     //页面返回后台的操作
     fun onBackGround()
     //页面销毁的操作

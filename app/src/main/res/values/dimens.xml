@@ -28,6 +28,7 @@
     <dimen name="global_18dp">18dp</dimen>
 
     <dimen name="global_40dp">40dp</dimen>
+    <dimen name="global_80dp">80dp</dimen>
     <dimen name="global_100dp">100dp</dimen>
     <dimen name="global_190dp">190dp</dimen>
     <dimen name="global_300dp">300dp</dimen>

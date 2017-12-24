@@ -38,7 +38,8 @@ class Page constructor(val context: Context,val layoutResId: Int) : IPage {
         pageMap.put(R.layout.page_train_subject,::PageTrainSubject)
     }
     private val view : PageContentImp
-
+    private var manager: IPageManager? = null
+    private var hasInit = false//初始化之后不需要再次调用init方法
     init {
         val kclass = getPageByResId(layoutResId)
         view = newPage(context,layoutResId,kclass!!)
@@ -49,7 +50,10 @@ class Page constructor(val context: Context,val layoutResId: Int) : IPage {
     }
 
     override fun onForground() {
-        view.init()
+        if(!hasInit) {
+            view.init()
+            hasInit = true
+        }
         view.onForground()
     }
 
@@ -87,5 +91,10 @@ class Page constructor(val context: Context,val layoutResId: Int) : IPage {
 
     override fun innerBack(): Boolean {
         return view.innerBack()
+    }
+
+    override fun setIPageManager(manager: IPageManager) {
+        this.manager = manager
+        view.setIPageManager(manager)
     }
 }

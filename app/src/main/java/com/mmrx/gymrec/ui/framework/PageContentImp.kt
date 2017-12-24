@@ -11,6 +11,7 @@ import com.mmrx.gymrec.ui.createViewByLayouytId
 abstract class PageContentImp(val context: Context,val layoutId: Int):IPageContent {
 
     protected val rootView: View
+    protected var manager: IPageManager? = null
     init{
         rootView = createViewByLayouytId(layoutId, context)
     }
@@ -22,6 +23,10 @@ abstract class PageContentImp(val context: Context,val layoutId: Int):IPageConte
     override fun onRemove() {}
     override fun getContentView(): View {
         return rootView
+    }
+
+    override fun setIPageManager(manager: IPageManager) {
+        this.manager = manager
     }
 
     override fun innerBack(): Boolean {

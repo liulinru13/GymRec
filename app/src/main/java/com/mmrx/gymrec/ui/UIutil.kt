@@ -78,18 +78,20 @@ fun getSystemTime():Pair<Int,Int>{
 }
 
 fun createDialogNormal(context: Context,title: String,
-                       content: String,positiveCallBack: IutilDialogCallBack): MaterialDialog{
+                       content: String,positiveCallBack: IutilDialogCallBack,
+                       negativeCallBack: IutilDialogCallBack): MaterialDialog{
     return MaterialDialog.Builder(context)
             .title(title)
             .content(content)
             .positiveText(android.R.string.ok)
             .negativeText(android.R.string.cancel)
             .onPositive { dialog, which ->
-                positiveCallBack.onClick(null)
                 dialog.dismiss()
+                positiveCallBack.onClick(null)
             }
             .onNegative { dialog, which ->
                 dialog.dismiss()
+                negativeCallBack.onClick(null)
             }
             .build()
 }
@@ -102,7 +104,7 @@ fun createDialogWithDatePicker(context: Context,title: String,
         val (y,m,d) = getSystemDate()
         datePickerLayout.datePicker.init(y,m,d, null)
     }else{
-        datePickerLayout.datePicker.init(year,month,day, null)
+        datePickerLayout.datePicker.init(year,month-1,day, null)
     }
     return MaterialDialog.Builder(context)
             .title(title)
@@ -111,7 +113,7 @@ fun createDialogWithDatePicker(context: Context,title: String,
             .negativeText(android.R.string.cancel)
             .onPositive({dialog, which ->
                 val year = datePickerLayout.datePicker.year
-                val month = datePickerLayout.datePicker.month
+                val month = datePickerLayout.datePicker.month +1
                 val day = datePickerLayout.datePicker.dayOfMonth
                 positiveCallBack?.onClick("${year}-${month}-${day}")
                 dialog.dismiss()

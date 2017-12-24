@@ -26,4 +26,6 @@ interface IPage {
     fun buildTitleBar():PageTitleStruct?
     //标题栏响应
     fun onTitleBarAction(action: EnumPageTitleType?): EnumPageTitleAction?
+    //设置IPageManager的接口
+    fun setIPageManager(manager: IPageManager)
 }

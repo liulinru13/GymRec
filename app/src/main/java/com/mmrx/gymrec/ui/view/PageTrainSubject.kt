@@ -1,26 +1,35 @@
 package com.mmrx.gymrec.ui.view
 
 import android.content.Context
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
 import com.mmrx.gymrec.R
+import com.mmrx.gymrec.bean.model.RecordBean
 import com.mmrx.gymrec.bean.model.TrainBean
 import com.mmrx.gymrec.bean.table.TrainTable
 import com.mmrx.gymrec.db.GymDbHelper
 import com.mmrx.gymrec.ui.*
 import com.mmrx.gymrec.ui.framework.*
+import com.yanzhenjie.recyclerview.swipe.*
 import kotlinx.android.synthetic.main.page_train_subject.view.*
 
 /**
  * Created by mmrx on 17/12/17.
  */
-class PageTrainSubject : PageContentImp,View.OnClickListener{
+class PageTrainSubject : PageContentImp,View.OnClickListener,
+        SwipeItemClickListener, SwipeMenuItemClickListener {
 
     private var dialog: MaterialDialog? = null
     private var popSaveNewDialog = false //在新建计划情况下，且没有新增训练项目，在后退时需要弹出对话框确认是否要保存
     private var trainRecBean = TrainBean(-1,"","","",-1,-1)
+    private val adapter: TrainRecItemAdapter by lazy { TrainRecItemAdapter(mutableListOf()) }
+
+
     constructor(context: Context, layoutId: Int) : super(context, layoutId)
 
     override fun init() {
@@ -29,6 +38,12 @@ class PageTrainSubject : PageContentImp,View.OnClickListener{
         rootView.trainSubjectDate.setOnClickListener(this)
         rootView.trainSubjectTime.setOnClickListener(this)
         rootView.trainSubjectAddNewItem.setOnClickListener(this)
+
+        rootView.trainSubjectItemList.layoutManager = LinearLayoutManager(context)
+        rootView.trainSubjectItemList.setSwipeItemClickListener(this)
+        rootView.trainSubjectItemList.setSwipeMenuItemClickListener(this)
+        rootView.trainSubjectItemList.setSwipeMenuCreator(MenuCreator())
+        rootView.trainSubjectItemList.adapter = adapter
     }
 
     override fun onClick(p0: View?) {
@@ -38,6 +53,14 @@ class PageTrainSubject : PageContentImp,View.OnClickListener{
             rootView.trainSubjectDate.id -> trainSubjectDateDialogLogic()
             rootView.trainSubjectTime.id -> trainSubjectTimeDialogLogic()
         }
+    }
+
+    override fun onItemClick(menuBridge: SwipeMenuBridge?) {
+
+    }
+
+    override fun onItemClick(itemView: View?, position: Int) {
+
     }
 
     private fun trainSubjectDateDialogLogic(){
@@ -151,7 +174,7 @@ class PageTrainSubject : PageContentImp,View.OnClickListener{
             trainRecBean.advice = rootView.trainSubjectAdviceEdit.text.toString()
             trainRecBean.train_date = rootView.trainSubjectDate.text.toString() +
                     "+" + rootView.trainSubjectTime.text.toString()
-            trainRecBean.train_subject = rootView.trainSubjectTime.text.toString()
+            trainRecBean.train_subject = rootView.trainSubjectName.text.toString()
             trainRecBean.train_marking = 80
             trainRecBean.train_icon = R.drawable.person_center
             GymDbHelper.getInstance(context).updateTrainRec(trainRecBean)
@@ -171,6 +194,13 @@ class PageTrainSubject : PageContentImp,View.OnClickListener{
                         override fun <T : Any> onClick(t: T?) {
                             saveTrainInfo()
                             popSaveNewDialog = false
+                            manager?.goBack()
+                        }
+                    },
+                    object: IutilDialogCallBack{
+                        override fun <T : Any> onClick(t: T?) {
+                            popSaveNewDialog = false
+                            manager?.goBack()
                         }
                     })
             dialog?.show()
@@ -193,5 +223,46 @@ class PageTrainSubject : PageContentImp,View.OnClickListener{
     }
     override fun onTitleBarAction(action: EnumPageTitleType?): EnumPageTitleAction? {
         return EnumPageTitleAction.PAGE_TITLE_ACTION_GO_BACK
+    }
+
+    inner class MenuCreator: SwipeMenuCreator {
+        override fun onCreateMenu(swipeLeftMenu: SwipeMenu?, swipeRightMenu: SwipeMenu?, viewType: Int) {
+            val item = SwipeMenuItem(context)
+            item.height = ViewGroup.LayoutParams.MATCH_PARENT
+            item.width = context.resources.getDimensionPixelOffset(R.dimen.global_80dp)
+            item.setBackgroundColor(context.resources.getColor(R.color.red))
+            item.setImage(R.drawable.ic_delete_sweep_white_24dp)
+            swipeRightMenu?.addMenuItem(item)
+        }
+    }
+
+    inner class TrainRecItemAdapter:RecyclerView.Adapter<RecItemViewHolder>{
+
+        private val dataList: MutableList<RecordBean> = mutableListOf()
+
+        constructor(dataList: List<RecordBean>) : super(){
+            this.dataList.addAll(dataList)
+        }
+
+        override fun onBindViewHolder(holder: RecItemViewHolder?, position: Int) {
+
+        }
+        override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecItemViewHolder {
+            val view = View.inflate(this@PageTrainSubject.context,R.layout.view_train_sub_list_item,null)
+            return RecItemViewHolder(view)
+        }
+
+        override fun getItemCount(): Int {
+            return 0
+        }
+    }
+
+
+    class RecItemViewHolder: RecyclerView.ViewHolder{
+        var view: View? = null
+        constructor(view: View):super(view){
+            this.view = view
+
+        }
     }
 }

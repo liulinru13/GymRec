@@ -10,6 +10,7 @@ import com.mmrx.gymrec.bean.table.MuscleTable
 import com.mmrx.gymrec.bean.table.RecordTable
 import com.mmrx.gymrec.bean.table.TrainTable
 import com.mmrx.gymrec.ui.view.PageFirstPage
+import com.mmrx.gymrec.utils.L
 import org.jetbrains.anko.db.*
 
 /**
@@ -104,6 +105,17 @@ class GymDbHelper (context : Context) : ManagedSQLiteOpenHelper(context,"gymRecD
         return bean
     }
 
+    fun deleteTrainRec(id: Int):Int{
+        var affectRow = 0
+        instance?.use {
+            affectRow = delete(TrainTable.NAME,
+                    TrainTable.ID+"=?",
+                    arrayOf(id.toString()))
+        }
+        if(affectRow > 0) notifyDBAcitveListener(TrainTable.NAME)
+        return affectRow
+    }
+
     /**
      * 插入一条新的健身计划
      */
@@ -117,6 +129,7 @@ class GymDbHelper (context : Context) : ManagedSQLiteOpenHelper(context,"gymRecD
                     TrainTable.TRAIN_MARKING to 0,
                     TrainTable.TRAIN_ICON to -1).toInt()
         }
+        L.i(rowId.toString())
         return rowId
     }
 
@@ -151,7 +164,7 @@ class GymDbHelper (context : Context) : ManagedSQLiteOpenHelper(context,"gymRecD
                     marking = 60
 
                 var itemsList = createRankIconResIdList((marking-60)%10)
-                list.add(TrainRecBean(R.drawable.default_image,temp.train_subject,temp.train_date,temp.train_marking,itemsList))
+                list.add(TrainRecBean(temp._id,R.drawable.default_image,temp.train_subject,temp.train_date,temp.train_marking,itemsList))
             }
         }
         return list

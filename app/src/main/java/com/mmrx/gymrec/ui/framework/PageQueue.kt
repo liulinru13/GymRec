@@ -57,6 +57,7 @@ class PageQueue constructor(val context: Context,val rootView: ViewGroup) : IPag
     override fun gotoPage(pageLayoutId: Int, map: HashMap<String, *>?) {
         var topPage: IPage? = null
         var newPage: IPage = Page(context, pageLayoutId)
+        newPage.setIPageManager(this)
         if(pageQueue.size > 0){
             topPage = pageQueue.peek()
         }
@@ -65,7 +66,7 @@ class PageQueue constructor(val context: Context,val rootView: ViewGroup) : IPag
         //新增页面的栈等级大于栈顶页面
         //或者相等，栈顶页弹栈
         if(newPage.getPageLevel() >= topPageLevel) {
-            topPage?.onRemove()
+            topPage?.onBackGround()
         }else if(pageQueue.size > 0){
             pageQueue.pop()
             topPage?.onRemove()

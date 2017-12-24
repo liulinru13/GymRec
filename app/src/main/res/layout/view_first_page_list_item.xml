@@ -13,100 +13,75 @@
         android:paddingLeft="@dimen/content_padding_lr"
         android:paddingRight="@dimen/content_padding_lr">
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/trainRecItemIcon"
+            android:layout_width="@dimen/first_page_list_icon_wh"
+            android:layout_height="@dimen/first_page_list_icon_wh"
+            android:layout_marginStart="@dimen/global_16dp"
+            android:src="@drawable/default_image"
+            app:civ_border_color="@color/normal_bg_color_gray"
+            app:civ_border_width="@dimen/global_1dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"/>
+
         <TextView
             android:id="@+id/trainRecItemMarking"
-            android:layout_width="wrap_content"
+            android:layout_width="75dp"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:gravity="center"
+            android:maxLines="1"
             android:text="87"
             android:textColor="@color/text_color"
             android:textSize="@dimen/first_page_list_marking_text_size"
             android:textStyle="bold" />
 
-        <android.support.constraint.ConstraintLayout
+        <LinearLayout
             android:id="@+id/item"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_toStartOf="@id/trainRecItemMarking">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/trainRecItemIcon"
-                android:layout_width="@dimen/first_page_list_icon_wh"
-                android:layout_height="@dimen/first_page_list_icon_wh"
-                android:layout_marginStart="@dimen/global_16dp"
-                android:src="@drawable/default_image"
-                app:civ_border_color="@color/normal_bg_color_gray"
-                app:civ_border_width="@dimen/global_1dp"
-                app:layout_constraintBottom_toBottomOf="@id/item"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@id/item" />
+            android:orientation="vertical"
+            android:layout_toEndOf="@id/trainRecItemIcon"
+            android:layout_toStartOf="@id/trainRecItemMarking"
+            android:layout_marginStart="@dimen/first_page_list_title_margin_lr"
+            android:layout_marginEnd="@dimen/global_8dp">
 
             <TextView
                 android:id="@+id/trainRecItemTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/first_page_list_title_margin_lr"
-                android:layout_marginStart="@dimen/first_page_list_title_margin_lr"
-                android:layout_marginTop="@dimen/first_page_list_item_margin_t"
-                android:ellipsize="end"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:gravity="center_vertical"
                 android:maxLines="1"
                 android:text="@string/app_name"
                 android:textColor="@color/text_color"
-                android:textSize="@dimen/text_size_normal_18"
-                app:layout_constraintStart_toEndOf="@+id/trainRecItemIcon"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textSize="@dimen/text_size_normal_18"/>
 
             <TextView
                 android:id="@+id/trainRecItemTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
                 android:layout_marginEnd="@dimen/first_page_list_title_margin_lr"
                 android:layout_marginTop="@dimen/first_page_list_item_margin_t"
                 android:text="2017年12月20日18:23:49"
                 android:textColor="@color/text_sub_color"
-                android:textSize="@dimen/text_size_normal_12"
-                app:layout_constraintStart_toEndOf="@+id/trainRecItemIcon"
-                app:layout_constraintStart_toStartOf="@id/trainRecItemTitle"
-                app:layout_constraintTop_toBottomOf="@+id/trainRecItemTitle" />
+                android:textSize="@dimen/text_size_normal_12"/>
 
             <LinearLayout
                 android:id="@+id/trainItemsLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/first_page_list_item_row_h"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/trainRecItemTitle"
-                app:layout_constraintTop_toBottomOf="@+id/trainRecItemTime">
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="@dimen/icon_small_wh"
-                    android:layout_height="@dimen/icon_small_wh"
-                    android:src="@drawable/default_image"
-                    android:layout_marginRight="@dimen/global_5dp"/>
-                <ImageView
-                    android:layout_width="@dimen/icon_small_wh"
-                    android:layout_height="@dimen/icon_small_wh"
-                    android:src="@drawable/default_image"
-                    android:layout_marginRight="@dimen/global_5dp"/>
-                <ImageView
-                    android:layout_width="@dimen/icon_small_wh"
-                    android:layout_height="@dimen/icon_small_wh"
-                    android:src="@drawable/default_image"
-                    android:layout_marginRight="@dimen/global_5dp"/>
-                <ImageView
-                    android:layout_width="@dimen/icon_small_wh"
-                    android:layout_height="@dimen/icon_small_wh"
-                    android:src="@drawable/default_image"
-                    android:layout_marginRight="@dimen/global_5dp"/>
-                <ImageView
-                    android:layout_width="@dimen/icon_small_wh"
-                    android:layout_height="@dimen/icon_small_wh"
-                    android:src="@drawable/default_image"
-                    android:layout_marginRight="@dimen/global_5dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="占位"/>
             </LinearLayout>
-        </android.support.constraint.ConstraintLayout>
+        </LinearLayout>
+
 
 
     </RelativeLayout>

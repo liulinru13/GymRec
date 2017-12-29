@@ -15,12 +15,14 @@
         android:background="#e5e5e5"
         android:layout_alignParentTop="true"
         android:text="图表"/>
-    
-    <com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
+
+    <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/global_15dp"
-        android:layout_below="@id/view1"/>
+        android:layout_below="@id/view1"
+        android:divider="@null"/>
+
 
 </RelativeLayout>

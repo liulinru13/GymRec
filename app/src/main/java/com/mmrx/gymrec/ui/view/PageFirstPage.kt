@@ -3,16 +3,22 @@ package com.mmrx.gymrec.ui.view
 import android.content.Context
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.TextView
+import com.daimajia.androidanimations.library.Techniques
+import com.daimajia.androidanimations.library.YoYo
+import com.daimajia.swipe.SimpleSwipeListener
+import com.daimajia.swipe.SwipeLayout
+import com.daimajia.swipe.adapters.BaseSwipeAdapter
 import com.mmrx.gymrec.R
 import com.mmrx.gymrec.bean.model.TrainRecBean
 import com.mmrx.gymrec.bean.table.TrainTable
 import com.mmrx.gymrec.db.GymDbHelper
 import com.mmrx.gymrec.db.IDBActiveListener
 import com.mmrx.gymrec.ui.framework.*
-import com.yanzhenjie.recyclerview.swipe.*
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.page_first_page.view.*
 import kotlinx.android.synthetic.main.view_first_page_list_item.view.*
@@ -21,47 +27,24 @@ import kotlinx.android.synthetic.main.view_first_page_list_item.view.*
  * page_first_page.xml
  * Created by mmrx on 17/12/16.
  */
-class PageFirstPage :PageContentImp,SwipeItemClickListener,SwipeMenuItemClickListener, IDBActiveListener {
+class PageFirstPage :PageContentImp, IDBActiveListener,AdapterView.OnItemClickListener {
     private val adapter: TrainRecAdapter by lazy { TrainRecAdapter(mutableListOf()) }
 
     constructor(context: Context, layoutId: Int) : super(context, layoutId)
 
     override fun init() {
-        rootView.listView.layoutManager = LinearLayoutManager(context)
-        rootView.listView.setSwipeItemClickListener(this)
-        rootView.listView.setSwipeMenuItemClickListener(this)
-        rootView.listView.setSwipeMenuCreator(MenuCreator())
         rootView.listView.adapter = adapter
+        rootView.listView.onItemClickListener = this
     }
 
     override fun onForground() {
-//        adapter.registerAdapterDataObserver(object: RecyclerView.AdapterDataObserver(){
-//            override fun onChanged() {
-//                super.onChanged()
-//                if(rootView.listView != null && rootView.listView.adapter == null){
-//                    rootView.listView.adapter = adapter
-//                }
-//            }
-//        })
         GymDbHelper.getInstance(context).addDBActiveListener(this)
         val tempList = GymDbHelper.getInstance(context).getTrainRecData()
         adapter.updateDataList(tempList)
     }
 
-    //删除
-    override fun onItemClick(menuBridge: SwipeMenuBridge?) {
-        val position = menuBridge?.position ?: -1
-        if(position != -1 && adapter.itemCount > position){
-            var item = adapter.getItemBeanByIndex(position)
-            item.let {
-                GymDbHelper.getInstance(context).deleteTrainRec(item!!.id)
-            }
-        }
-    }
-
-    //列表项点击
-    override fun onItemClick(itemView: View?, position: Int) {
-        if(adapter.itemCount > position){
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        if(adapter.count > position){
             var item = adapter.getItemBeanByIndex(position)
             if(item != null){
                 val map = HashMap<String,Int>()
@@ -70,6 +53,9 @@ class PageFirstPage :PageContentImp,SwipeItemClickListener,SwipeMenuItemClickLis
             }
         }
     }
+
+
+
 
     override fun dbUpdate(tableName: String) {
         if(TrainTable.NAME == tableName){
@@ -107,39 +93,57 @@ class PageFirstPage :PageContentImp,SwipeItemClickListener,SwipeMenuItemClickLis
         return EnumPageTitleAction.PAGE_TITLE_ACTION_PERSON_CENTER
     }
 
-    inner class MenuCreator: SwipeMenuCreator{
-        override fun onCreateMenu(swipeLeftMenu: SwipeMenu?, swipeRightMenu: SwipeMenu?, viewType: Int) {
-            val item = SwipeMenuItem(context)
-            item.height = ViewGroup.LayoutParams.MATCH_PARENT
-            item.width = context.resources.getDimensionPixelOffset(R.dimen.global_80dp)
-            item.setBackgroundColor(context.resources.getColor(R.color.red))
-            item.setImage(R.drawable.ic_delete_sweep_white_24dp)
-            swipeRightMenu?.addMenuItem(item)
-        }
-    }
-
-    inner class TrainRecAdapter:RecyclerView.Adapter<RecViewHolder>{
+    inner class TrainRecAdapter:BaseSwipeAdapter{
         private val dataList: MutableList<TrainRecBean> = mutableListOf()
-
         constructor(dataList: List<TrainRecBean>) : super(){
             this.dataList.addAll(dataList)
         }
 
-        override fun getItemCount(): Int {
-            return dataList.size
-        }
-
-        fun getItemBeanByIndex(index: Int):TrainRecBean?{
-            if(dataList.size > index)
-                return dataList[index]
+        override fun getItem(position: Int): Any? {
+            if(dataList.size > position)
+                return dataList[position]
             return null
         }
 
-        override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecViewHolder {
-            val view = View.inflate(this@PageFirstPage.context,R.layout.view_first_page_list_item,null)
-            return RecViewHolder(view)
+        override fun getSwipeLayoutResourceId(position: Int): Int {
+            return R.id.swipeView
         }
-        override fun onBindViewHolder(holder: RecViewHolder?, position: Int) {
+
+        override fun getItemId(position: Int): Long {
+            return position.toLong()
+        }
+
+        override fun getCount(): Int {
+            return dataList.size
+        }
+
+        override fun generateView(position: Int, parent: ViewGroup?): View {
+            val view = LayoutInflater.from(context)
+                    .inflate(R.layout.view_swipe_list_item_first_page,null)
+            if(view is SwipeLayout){
+                view.addSwipeListener(object : SimpleSwipeListener(){
+                    override fun onOpen(layout: SwipeLayout?) {
+                        YoYo.with(Techniques.Tada).duration(500)
+                                .delay(100).playOn(layout?.findViewById(R.id.swipeViewDeleteBn))
+                    }
+                })
+            }
+            val delBn = view.findViewById<View>(R.id.swipeViewDeleteBn)
+            delBn.setOnClickListener({_->
+                //删除
+                if(position != -1 && adapter.count > position){
+                    var item = adapter.getItemBeanByIndex(position)
+                    item.let {
+                        GymDbHelper.getInstance(context).deleteTrainRec(item!!.id)
+                    }
+                }
+            })
+            val holder = RecViewHolder(view)
+            view.tag = holder
+            return view
+        }
+
+        override fun fillValues(position: Int, convertView: View?) {
             if(dataList.size < position)
                 return
             val bean = dataList[position]
@@ -150,17 +154,26 @@ class PageFirstPage :PageContentImp,SwipeItemClickListener,SwipeMenuItemClickLis
             }else{
                 showTime = dateTime[0] + " " + dateTime[1]
             }
-            holder?.trainRecTitle?.text = bean.title
-            holder?.trainRecTime?.text = showTime
-            holder?.trainMarking?.text = bean.marking.toString()
+            val holder = convertView?.tag as RecViewHolder
+
+            holder.trainRecTitle?.text = bean.title
+            holder.trainRecTime?.text = showTime
+            holder.trainMarking?.text = bean.marking.toString()
             if(bean.recIcon != null && bean.recIcon != -1)
-                holder?.trainRecIcon?.setImageResource(bean.recIcon)
+                holder.trainRecIcon?.setImageResource(bean.recIcon)
             bean.items.let {
                 for (i in bean.items!!) {
 
                 }
             }
         }
+
+        fun getItemBeanByIndex(index: Int):TrainRecBean?{
+            if(dataList.size > index)
+                return dataList[index]
+            return null
+        }
+
 
         fun updateDataList(dataList: List<TrainRecBean>){
             this.dataList.clear()
@@ -169,14 +182,12 @@ class PageFirstPage :PageContentImp,SwipeItemClickListener,SwipeMenuItemClickLis
         }
     }
 
-    class RecViewHolder:RecyclerView.ViewHolder{
-        var view: View? = null
+    class RecViewHolder{
         var trainRecIcon: CircleImageView? = null
         var trainRecTitle: TextView? = null
         var trainRecTime: TextView? = null
         var trainMarking: TextView? = null
-        constructor(view: View):super(view){
-            this.view = view
+        constructor(view: View){
             trainRecIcon = view.trainRecItemIcon
             trainRecTitle = view.trainRecItemTitle
             trainRecTime = view.trainRecItemTime

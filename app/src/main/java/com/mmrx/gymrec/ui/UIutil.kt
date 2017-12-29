@@ -6,7 +6,6 @@ import android.text.format.Time
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
-import com.afollestad.materialdialogs.DialogAction
 import com.afollestad.materialdialogs.MaterialDialog
 import com.mmrx.gymrec.R
 import com.mmrx.gymrec.ui.framework.IPageContent
@@ -149,4 +148,5 @@ fun createDialogWithTimePicker(context: Context,title: String,
             .onNegative({dialog, _ ->dialog.dismiss() })
             .build()
 }
+
 

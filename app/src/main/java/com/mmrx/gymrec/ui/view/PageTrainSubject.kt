@@ -15,14 +15,12 @@ import com.mmrx.gymrec.bean.table.TrainTable
 import com.mmrx.gymrec.db.GymDbHelper
 import com.mmrx.gymrec.ui.*
 import com.mmrx.gymrec.ui.framework.*
-import com.yanzhenjie.recyclerview.swipe.*
 import kotlinx.android.synthetic.main.page_train_subject.view.*
 
 /**
  * Created by mmrx on 17/12/17.
  */
-class PageTrainSubject : PageContentImp,View.OnClickListener,
-        SwipeItemClickListener, SwipeMenuItemClickListener {
+class PageTrainSubject : PageContentImp,View.OnClickListener{
 
     private var dialog: MaterialDialog? = null
     private var popSaveNewDialog = false //在新建计划情况下，且没有新增训练项目，在后退时需要弹出对话框确认是否要保存
@@ -39,11 +37,11 @@ class PageTrainSubject : PageContentImp,View.OnClickListener,
         rootView.trainSubjectTime.setOnClickListener(this)
         rootView.trainSubjectAddNewItem.setOnClickListener(this)
 
-        rootView.trainSubjectItemList.layoutManager = LinearLayoutManager(context)
-        rootView.trainSubjectItemList.setSwipeItemClickListener(this)
-        rootView.trainSubjectItemList.setSwipeMenuItemClickListener(this)
-        rootView.trainSubjectItemList.setSwipeMenuCreator(MenuCreator())
-        rootView.trainSubjectItemList.adapter = adapter
+//        rootView.trainSubjectItemList.layoutManager = LinearLayoutManager(context)
+//        rootView.trainSubjectItemList.setSwipeItemClickListener(this)
+//        rootView.trainSubjectItemList.setSwipeMenuItemClickListener(this)
+//        rootView.trainSubjectItemList.setSwipeMenuCreator(MenuCreator())
+//        rootView.trainSubjectItemList.adapter = adapter
     }
 
     override fun onClick(p0: View?) {
@@ -55,13 +53,6 @@ class PageTrainSubject : PageContentImp,View.OnClickListener,
         }
     }
 
-    override fun onItemClick(menuBridge: SwipeMenuBridge?) {
-
-    }
-
-    override fun onItemClick(itemView: View?, position: Int) {
-
-    }
 
     private fun trainSubjectDateDialogLogic(){
         val (year,month,day) = splitDate(rootView.trainSubjectDate.text.toString())
@@ -225,16 +216,6 @@ class PageTrainSubject : PageContentImp,View.OnClickListener,
         return EnumPageTitleAction.PAGE_TITLE_ACTION_GO_BACK
     }
 
-    inner class MenuCreator: SwipeMenuCreator {
-        override fun onCreateMenu(swipeLeftMenu: SwipeMenu?, swipeRightMenu: SwipeMenu?, viewType: Int) {
-            val item = SwipeMenuItem(context)
-            item.height = ViewGroup.LayoutParams.MATCH_PARENT
-            item.width = context.resources.getDimensionPixelOffset(R.dimen.global_80dp)
-            item.setBackgroundColor(context.resources.getColor(R.color.red))
-            item.setImage(R.drawable.ic_delete_sweep_white_24dp)
-            swipeRightMenu?.addMenuItem(item)
-        }
-    }
 
     inner class TrainRecItemAdapter:RecyclerView.Adapter<RecItemViewHolder>{
 

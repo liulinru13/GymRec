@@ -121,14 +121,14 @@
         android:layout_margin="@dimen/global_15dp"
         android:layout_alignParentBottom="true"/>
 
-    <com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
-        android:id="@+id/trainSubjectItemList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="@dimen/global_8dp"
-        android:layout_marginEnd="@dimen/global_8dp"
-        android:layout_marginTop="@dimen/global_8dp"
-        android:layout_below="@id/view_top"
-        android:layout_above="@id/trainSubjectAddNewItem"/>
+    <!--<com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView-->
+        <!--android:id="@+id/trainSubjectItemList"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginStart="@dimen/global_8dp"-->
+        <!--android:layout_marginEnd="@dimen/global_8dp"-->
+        <!--android:layout_marginTop="@dimen/global_8dp"-->
+        <!--android:layout_below="@id/view_top"-->
+        <!--android:layout_above="@id/trainSubjectAddNewItem"/>-->
 
 </RelativeLayout>
